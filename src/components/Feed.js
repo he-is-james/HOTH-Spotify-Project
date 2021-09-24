@@ -1,14 +1,12 @@
-import { response } from 'express';
 import React, { useState, useEffect } from 'react';
 import { getName, getListening, getListeningImage, getMostPlayed, getMostImage, getTopGenre1, getTopGenre2, getTopGenre3, getNameImage } from '../utils/functions';
-import '../utils/charts'
+import { getRecently, getAudioFeatures } from '../utils/charts'
 import './Feed.css';
 import Profile from './Profile';
-import { getRecently } from '../utils/charts';
 
 function Feed() {
+    getAudioFeatures(getRecently())
     const [users, setUser] = useState([])
-
     const [name, setName] = useState("");
     const [isNImage, setNImage] = useState("");
     const [isListening, setListening] = useState("");
@@ -18,7 +16,6 @@ function Feed() {
     const [topGenre1, setTG1] = useState("");
     const [topGenre2, setTG2] = useState("");
     const [topGenre3, setTG3] = useState("");
-    const [recentlyPlayed, setRecentlyPlayed] = useState("");
 
     useEffect(() => {
         getName().then((response) => {
@@ -79,11 +76,7 @@ function Feed() {
             setTG3(response)
         })
     });
-    useEffect(() => {
-        getRecently().then((response) => {
-            setRecentlyPlayed(response)
-        })
-    })
+    
 
     return (
         <div className="feed">
