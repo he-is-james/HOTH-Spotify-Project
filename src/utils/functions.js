@@ -6,15 +6,19 @@ export const getName = async () => {
     return name;
 }
 
+export const getNameImage = async () => {
+    let response = await get(`https://api.spotify.com/v1/me`);
+    const nameImage = response.images[0].url;
+    return nameImage;
+}
+
 export const getListening = async () => {
     let response = await get(`https://api.spotify.com/v1/me/player/currently-playing`);
     if (response.is_playing) {
         const display = response.item.name + " - " + response.item.artists[0].name;
-        console.log(display);
         return display;
     }
     else {
-        console.log("Offline");
         return "Offline";
     }
 }
@@ -29,10 +33,12 @@ export const getListeningImage = async () => {
 
 export const getMostPlayed = async () => {
     let response = await get(`https://api.spotify.com/v1/me/top/tracks`);
-    console.log(response);
     const display = response.items[0].name + " - " + response.items[0].artists[0].name;
     return display;
 }
+
+// get top three instead of just most played
+// include top three favorite artists
 
 export const getMostImage = async () => {
     let response = await get(`https://api.spotify.com/v1/me/top/tracks`);

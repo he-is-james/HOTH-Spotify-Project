@@ -26,11 +26,11 @@ function App() {
     <div className="appBox">
       <h1>Welcome!</h1>
       <div className="description">
-        <p>HOTH Project - James<br/>
+        <p>A HOTH and Personal Project - James<br/>
         <br/>
         <strong>Purpose</strong> <br/>
         Want to see your own Spotify 2020 rewind data again? <br/>
-        Spotify Friend Profiles is a more social and interactive platform <br/>to know your friends' music preferences. <br/> 
+        Spotify Profiles allows a user to discover their most played<br/>tracks and artists, while also understanding what audio features they like the most<br/> 
         <br/>
         <strong>How to get started?</strong> <br/>
         After being authorized, you can look at your top tracks data as well as <br/>functionality (in the future) to share your profile with your friends!

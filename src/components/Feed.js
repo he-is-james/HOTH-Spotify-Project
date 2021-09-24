@@ -1,13 +1,16 @@
+import { response } from 'express';
 import React, { useState, useEffect } from 'react';
-// import firebase from '../firebase'
-import { getName, getListening, getListeningImage, getMostPlayed, getMostImage, getTopGenre1, getTopGenre2, getTopGenre3 } from '../utils/functions';
+import { getName, getListening, getListeningImage, getMostPlayed, getMostImage, getTopGenre1, getTopGenre2, getTopGenre3, getNameImage } from '../utils/functions';
+import '../utils/charts'
 import './Feed.css';
 import Profile from './Profile';
+import { getRecently } from '../utils/charts';
 
 function Feed() {
     const [users, setUser] = useState([])
 
     const [name, setName] = useState("");
+    const [isNImage, setNImage] = useState("");
     const [isListening, setListening] = useState("");
     const [isLImage, setLImage] = useState("");
     const [mostPlayed, setMostPlayed] = useState("");
@@ -15,12 +18,18 @@ function Feed() {
     const [topGenre1, setTG1] = useState("");
     const [topGenre2, setTG2] = useState("");
     const [topGenre3, setTG3] = useState("");
+    const [recentlyPlayed, setRecentlyPlayed] = useState("");
 
     useEffect(() => {
         getName().then((response) => {
             setName(response)
         })
     });
+    useEffect(() => {
+        getNameImage().then((response) => {
+            setNImage(response)
+        })
+    })
     useEffect(() => {
         getListening().then((response) => {
             setListening(response)
@@ -70,12 +79,18 @@ function Feed() {
             setTG3(response)
         })
     });
+    useEffect(() => {
+        getRecently().then((response) => {
+            setRecentlyPlayed(response)
+        })
+    })
 
     return (
         <div className="feed">
             <h1>Dashboard</h1>
             <h3>Your Profile</h3>
-            <Profile account={name} isListening={isListening} isLImage={isLImage} mostPlayed={mostPlayed} isPImage={isPImage} topGenre1={topGenre1} topGenre2={topGenre2} topGenre3={topGenre3}/>
+            <Profile account={name} isNImage={isNImage} isListening={isListening} isLImage={isLImage} mostPlayed={mostPlayed} isPImage={isPImage} topGenre1={topGenre1} topGenre2={topGenre2} topGenre3={topGenre3}/>
+            {/* change friends feature to playlist code entrance, get the user playlists then discover their aspects and whether or not they satisfy a certain type you like */}
             <h4>Friends</h4>
             <button className="add">Add Friends!</button>
         </div>

@@ -6,12 +6,13 @@ function Profile(props) {
             <div className="headerBox1">
                 <div className="headers">
                     <h2><u><strong>{props.account}</strong></u></h2>
+                    <img className="NImage" src={props.isNImage}/>
                 </div>
             </div>
             <div className="divider" />
             <div className="headerBox2">
                 <div className="text">
-                    <p><u>Currently Listening:</u></p>
+                    <p><u>Currently Listening To:</u></p>
                     {props.isListening} <img className="LImage" src={props.isLImage}/>
                 </div>
             </div>
